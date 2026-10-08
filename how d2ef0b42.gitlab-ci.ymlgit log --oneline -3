@@ -1,0 +1,12 @@
+pages:
+  stage: deploy
+  tags:
+    - windows
+  script:
+    - New-Item -ItemType Directory -Force -Path public
+    - Get-ChildItem -Path . -Exclude public,.git,.gitlab-ci.yml | Copy-Item -Destination public -Recurse -Force
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"

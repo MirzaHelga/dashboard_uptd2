@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard Kinerja & Anggaran UP2D</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+<div><h1>Dashboard Kinerja & Monitoring Anggaran UP2D</h1><p id="src"></p></div>
+<div class="actions">
+<label class="btn primary">Unggah Excel<input type="file" id="file" accept=".xlsx,.xls" hidden></label>
+<button class="btn" id="reset">Pakai data contoh</button>
+<button class="btn" id="export">Unduh rekap</button>
+</div>
+</header>
+<section class="filters">
+<label>Dari bulan<select id="from"></select></label>
+<label>Sampai bulan<select id="to"></select></label>
+<label>Jenis kinerja<select id="jenis"></select></label>
+<label>Mata anggaran<select id="mata"></select></label>
+<label>Target kinerja (%)<input type="number" id="target" value="100" min="1" max="200"></label>
+<button class="btn" id="clear">Atur ulang filter</button>
+</section>
+<main>
+<div class="kpis" id="kpis"></div>
+<nav class="tabs">
+<button data-tab="ringkasan" class="on">Ringkasan</button>
+<button data-tab="kinerja">Kinerja</button>
+<button data-tab="anggaran">Anggaran</button>
+<button data-tab="rekap">Rekap bulanan</button>
+</nav>
+<div class="tab on" id="tab-ringkasan">
+<div class="grid">
+<div class="card"><h2>Nilai kinerja per bulan</h2><p class="hint">Klik titik untuk memilih bulan</p><div class="cv"><canvas id="c-kin"></canvas></div></div>
+<div class="card"><h2>Anggaran vs realisasi</h2><p class="hint">Klik batang untuk memilih bulan</p><div class="cv"><canvas id="c-ang"></canvas></div></div>
+<div class="card"><h2>Realisasi per mata anggaran</h2><p class="hint">Klik irisan untuk memfilter</p><div class="cv"><canvas id="c-mata"></canvas></div></div>
+<div class="card"><div class="row"><h2 id="indT"></h2><select id="indM"></select></div><div class="cv"><canvas id="c-ind"></canvas></div></div>
+</div>
+</div>
+<div class="tab" id="tab-kinerja"><div class="card" id="t-heat"></div><div class="card" id="t-ind"></div></div>
+<div class="tab" id="tab-anggaran"><div class="card" id="t-mata"></div><div class="card" id="t-heata"></div></div>
+<div class="tab" id="tab-rekap"><div class="card" id="t-rk"></div><div class="card" id="t-ra"></div></div>
+</main>
+<script src="libs/chart.umd.min.js"></script>
+<script src="libs/xlsx.full.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
